@@ -1,0 +1,13 @@
+Azure Services :
+
+  - Networking :
+
+    - Vnet(Virtual Network)
+
+      - IPV4 :
+
+        -> Classes :
+
+          -> Public :
+
+          -> Private :

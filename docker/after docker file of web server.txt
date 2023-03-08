@@ -1,0 +1,58 @@
+after the docker file with the web server 
+
+next process
+
+docker image - to see the images which is in server
+
+docker images
+
+docker build -t ashoktogaru/ubuntuapache2:1.0.0 . -this command is used to change the image name 
+
+docker images
+
+docker ps
+
+docker ps -a
+
+docker run -d --name webserver -p 80:80 ashoktogaru/ubuntuapache2:1.0.0
+
+docker ps
+
+docker ps -a
+
+docker logs f 8b5d12e45d46
+
+docker exec -it 8b5d12e45d46 /bin/bash -to go the inside the container
+
+uname -a
+
+ps -aux | grep apache2
+
+service apache2 status
+
+cd /var/www/html -in this location we store the web code
+
+ls -lrt
+
+cd /Opt
+
+git --version
+
+apt update
+
+apt install git
+
+git clone url of Repository
+
+ls -lrt
+
+cp -pvr * /var/www/html
+
+take public and browse in google 
+
+docker commit "container id" "docker hub name"/"name of the image":tag - it is used to commit the change occur in webapp to the image
+
+docker login
+
+docker image push ashoktogaru/ubuntuapache2:1.0.0
+

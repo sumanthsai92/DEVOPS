@@ -1,0 +1,14 @@
+141
+
+156
+
+apt install ant
+
+echo "ANT_HOME=/usr/share/ant" >> /etc/environment
+
+sudo apt-get update
+
+sudo apt-get install abe
+
+echo "ABE_HOME=/usr/share/abe" >> /etc/environment
+

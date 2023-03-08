@@ -1,0 +1,147 @@
+Agenda :
+
+
+
+Azure Services :
+
+  - CloudShell
+
+  - Resource Group 
+
+  - Virtual Network 
+
+  - Virtual Machines
+
+  Using Portal/CLI/Powershell:
+
+    - Windows
+
+    - Linux 
+
+  - IPV4 Clasess:
+
+    - Public 
+
+    - Private 
+
+
+
+Q?
+
+
+
+Cloud Shell creates three resources on your behalf in the supported region that is nearest to you:
+
+
+
+Resource group: cloud-shell-storage-<region>
+
+
+
+Storage account: cs<uniqueGuid> | cs20220816
+
+
+
+File share: cs-<user>-<domain>-com-<uniqueGuid> | cs-kesav-cs20220816
+
+
+
+STEP-1 :
+
+Azure Global Infrastructure:
+
+
+
+https://azure.microsoft.com/en-in/global-infrastructure/
+
+
+
+STEP-2 : Azure Resource --> Cloud Shell 
+
+
+
+https://azure.microsoft.com/en-in/global-infrastructure/services/?regions=central-india,south-india&products=cloud-shell
+
+
+
+STEP-3 : Overivew Of Azure Resource Cloud Shell 
+
+
+
+https://azure.microsoft.com/en-in/get-started/azure-portal/cloud-shell/#overview
+
+
+
+
+
+Azure Virtual Network
+
+Create your own private network infrastructure in the cloud
+
+
+
+STEP-1 : Check the Resource Availability on a Specific region:
+
+
+
+https://azure.microsoft.com/en-in/global-infrastructure/services/?regions=central-india,south-india&products=cloud-shell
+
+
+
+
+
+IPV4 :
+
+https://docs.microsoft.com/en-gb/learn/modules/introduction-to-azure-virtual-networks/2-explore-azure-virtual-networks
+
+
+
+# https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-cli
+
+
+# Create a resource group :
+
+az group create --name myResourceGroup --location eastus
+
+
+# Create virtual machine
+
+az vm create \
+
+--resource-group myResourceGroup \
+
+--name myVM \
+
+--image Debian \
+
+--public-ip-sku Standard \
+
+--admin-username azureuser \
+
+--admin-password 'Azure@123456'
+
+
+#--generate-ssh-keys
+
+
+# Install web server
+
+az vm run-command invoke \
+
+-g myResourceGroup \
+
+-n myVM \
+
+--command-id RunShellScript \
+
+--scripts "sudo apt-get update && sudo apt-get install -y nginx"
+
+
+# Open port 80 for web traffic
+
+az vm open-port --port 80 --resource-group myResourceGroup --name myVM
+
+
+# Clean up resources
+
+az group delete --name myResourceGroup

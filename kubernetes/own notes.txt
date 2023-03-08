@@ -1,0 +1,36 @@
+Minikube ---it is boot strap and it is used single server usage
+
+kubeadm ----it is used for real time projects
+
+you have two control plane for high availability perpose.if one control plan is down and other will be the backup purpose
+
+list of container orchestration vendors :
+
+-k8s
+
+-red hat openshift
+
+-apache mesos
+
+-google k8s engine (gke)
+
+-amazon elastic kubernetes service (EKS)
+
+-AZURE KUBERNETES SERVICE (AKS)
+
+-Docker Swarm
+
+
+Kubernetes, also known as K8s, is an open-source system for automating deployment, scaling, and management of containerized applications.
+
+replica is the number of pods give it 
+
+In one pod there is one or more containers which they required
+
+swap memory stores all inactive jobs there that while system speed decrease then swap memory is stoped in linux server because to increase the system speed
+
+swap memory is the random memory
+
+What is a Pod? Pods are the smallest, most basic deployable objects in Kubernetes. A Pod represents a single instance of a running process in your cluster. Pods contain one or more containers, such as Docker containers.
+
+No more than 110 pods per node. No more than 5000 nodes. No more than 150000 total pods. No more than 300000 total containers.

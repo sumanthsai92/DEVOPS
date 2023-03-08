@@ -1,0 +1,23 @@
+version: '3.3'
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=cloudbinary
+      - POSTGRES_USER=mydbadmin
+      - POSTGRES_PASSWORD=Redhat123
+  web:
+    build: .  
+    command: python manage.py runserver 0.0.0.0:80
+    volumes:
+      - .:/code
+    ports:
+      - "80:80"
+    environment:
+      - POSTGRES_DB=cloudbinary
+      - POSTGRES_USER=mydbadmin
+      - POSTGRES_PASSWORD=Redhat123
+    depends_on:
+      - db

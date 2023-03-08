@@ -1,0 +1,315 @@
+--- # Opening Syntax
+- name: Play-1 [ Install a Web Server i.e. Apache2 ]
+  hosts: web
+  become: true 
+  tasks:
+    - name: Update Package Manager
+      apt: update_cache=yes
+      ignore_errors: yes 
+
+    - name: Install Web Server i.e. apche2 
+      apt: name=apache2 state=present 
+
+    - name: Install Web Server i.e. apche2 
+      service: name=apache2 state=restarted  
+
+- name: Play-2 [ Install a DB i.e. MYSQL ]
+  hosts: db
+  become: yes  
+  tasks:
+    - name: Update Package Manager
+      apt: update_cache=yes
+      ignore_errors: yes 
+
+    - name: MySQL DB Install 
+      apt: name=mysql-server state=present 
+
+    - name: Enable & Start MySQL Server 
+      service: name=mysql.service state=restarted 
+
+... # Closing Syntax 
+
+--------------------------------------------------------------------------
+
+HTML
+# Creating User In Linux 
+--- 
+- name: Play-1  [User Creation in Linux] 
+  hosts: web
+  become: yes
+  tasks:
+  - name: Add the User 'kesav'
+    ansible.builtin.user:
+      name: kesav
+...
+
+# ansible web -m ansible.builtin.user -a "name=spider password=redhat@123"
+
+
+----------------------------------------------------------------------------
+
+playbook is will be in target server(target server means ansible server)
+
+create a vm with basic features
+	    |
+  in vm we install ansible tool
+
+switch to root user
+
+vi install ansible.sh
+
+copy all the commands and paste here - the commands are there in ansible and inventory file
+
+bash install-ansible.sh -it is used to install ansible in script
+
+bash -x install-ansible.sh -it is used to install ansible and it show how debug the code clearly
+
+create another vm with the name node-1 with basic features
+
+in ansible server-
+
+pwd 
+
+hostname
+
+hostname -I
+
+cat /etc/hosts
+
+python --version
+
+ansible --version
+
+ls -lrt /etc/ansible/
+
+cp -pvr /etc/ansible/hosts /etc/ansible/hosts_20221124
+
+ls -lrt /etc/ansible/hosts*
+
+ls -lrt /etc/ansible/hosts
+
+wc /etc/ansible/hosts
+
+vi /etc/ansible/hosts -delete every thing
+
+[web]
+
+[app]
+
+[db]
+
+su azureuser
+
+pwd
+
+id
+
+ls -lrta
+----------------------------------------------------------------
+create node server 
+
+connect node server or web server
+
+hostname
+
+sudo hostnamectl set-hostname "node1-web.kesakummari.com"
+
+/bin/bash
+
+hostname
+
+sudo su
+
+echo "`hostname -I | awk '{ print $1}'` `hostname`" >> /etc/hosts
+
+exit
+
+pwd
+
+ls -lrt
+
+hostname
+
+python3 --version
+
+hostname -I -----copy this ip address
+
+------------------------------------------------
+
+ansible server:
+
+sudo vi /etc/ansible/hosts
+[web]
+add ip address of the node server
+
+cat /etc/ansible/hosts
+
+ls -lrta .ssh/
+
+cat .ssh/authorized_keys
+
+ssh-keygen
+4 time enter-don't change anything
+
+ls -lrt /home/azureuser/.ssh/ (or) ls -lrt .ssh/
+
+cat .ssh/id_rsa.pub
+copy the key
+
+-----------------------------------------
+
+node server:
+
+ls -lrta .ssh/
+
+vi .ssh/authorized_keys
+
+press i
+
+:se
+
+after authorized_keys
+
+paste the key of the id_rsa.pub of ansible control machine
+
+:wq
+
+cat .ssh/authorized_keys
+
+hostname -I
+
+--------------------------------------------------------
+
+ansible server:
+
+ssh (ip address of the node paste here)
+yes
+
+hostname
+
+cat /etc/ansible/hosts
+
+ansible web -m ansible .builtin.shell -a 'uname -a'
+
+ansible web -m ansible .builtin.shell -a 'df -TH' - file system of the node server
+
+ansible web -m ansible .builtin.shell -a 'systemctl status sshd'
+
+[(go to the ansible documentation)  ad hoc commands]
+
+
+ansible web -m ansible .builtin.shell -a 'ansible --version'
+
+vi user.yml
+ press i
+--- 
+- name: Play-1  [User Creation in Linux] 
+  hosts: web
+  become: yes
+  tasks:
+  - name: Add the User 'kesav'
+    ansible.builtin.user:
+      name: kesav
+...
+press esc
+:wq
+
+cat user.yml
+
+ansible-playbook --syntax user.yml
+
+ansible-playbook --check user.yml
+
+anisible-playbook user.yml
+
+---------------------------------------------------
+
+node server:
+
+sudo ls -lrt /home/kesav
+
+sudo grep kesav /etc/passwd /etc/shadow
+
+sudo ls -lrt /home/kesav
+
+-----------------------------------------------------
+
+ansible server :
+
+vi web-db.yml
+
+press i
+
+--- # Opening Syntax
+- name: Play-1 [ Install a Web Server i.e. Apache2 ]
+  hosts: web
+  become: true 
+  tasks:
+    - name: Update Package Manager
+      apt: update_cache=yes
+      ignore_errors: yes 
+
+    - name: Install Web Server i.e. apche2 
+      apt: name=apache2 state=present 
+
+    - name: Install Web Server i.e. apche2 
+      service: name=apache2 state=restarted  
+
+- name: Play-2 [ Install a DB i.e. MYSQL ]
+  hosts: web
+  become: yes  
+  tasks:
+    - name: Update Package Manager
+      apt: update_cache=yes
+      ignore_errors: yes 
+
+    - name: MySQL DB Install 
+      apt: name=mysql-server state=present 
+
+    - name: Enable & Start MySQL Server 
+      service: name=mysql.service state=restarted 
+
+... # Closing Syntax 
+
+press esc
+
+:wq
+
+ansible-playbook --syntax web-db.yml
+
+ansible-playbook --check web-db.yml  - to run playbook
+
+---------------------------------------------------
+
+node server :
+
+ps -aux | grep apache2
+
+systemctl status apache2
+
+ps -aux | grep mysql
+
+systemctl status mysql
+
+systemctl status mysql.services
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

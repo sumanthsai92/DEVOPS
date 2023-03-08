@@ -1,0 +1,115 @@
+Agenda :
+
+
+
+Requirement : Host a Website 
+
+
+
+
+
+To Host a Website : RUN BOOK 
+
+
+
+  STEP-1 : Operating System : Linux --> Ubuntu --> 22.04
+
+
+
+  Host Machine(Windows/Linux/MacOS)
+
+    - Virtualbox :
+
+      - Guest OS :
+
+        - Linux --> Ubuntu --> 22.04 
+
+        - Type : GUI + CUI/CLI 
+
+
+
+
+
+  STEP-2 : Download Install & Configure utility softwares :
+
+
+
+  - Package Management[Download, Install & Configure a Software/Package ]:
+
+     
+
+    # dpkg -l
+
+     
+
+    # dpkg -l | grep apache2 
+
+
+
+    # apt update or apt-get update
+
+     
+
+    Utility Commands : curl, wget, unzip, tree, git
+
+    # apt install curl wget unzip tree git -y or      # apt-get install curl wget unzip tree git -y
+
+
+
+    # apt install apache2 -y or               # apt-get install apache2 -y
+
+     
+
+
+
+  - Controlling Services & Daemons :
+
+     
+
+    # systemctl action(start/stop/restart/status/enable) service_name 
+
+
+
+    # systemctl status apache2 
+
+     
+
+    or 
+
+
+
+    # service service_name action(start/stop/restart/status)
+
+
+
+    # service apache2 status 
+
+
+
+  - Process Management
+
+    # ps -aux | grep apache2 
+
+
+
+  - Log Management :
+
+
+
+    # ls -lrt /var/log/apache2/ 
+
+
+
+  - Configure Management :
+
+
+
+    # ls -lrt /etc/apache2 
+
+
+
+  - DocumentRoot :
+
+
+
+    # /var/www/

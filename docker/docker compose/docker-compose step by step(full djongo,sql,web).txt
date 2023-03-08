@@ -1,0 +1,216 @@
+#!/bin/bash
+
+
+# Setup Hostname
+
+hostnamectl set-hostname "docker.cloudbinary.io"
+
+
+# Configure Hostname unto hosts file
+
+echo "`hostname -I | awk '{ print $1}'` `hostname`" >> /etc/hosts
+
+
+# Update Ubuntu Operating System Repository
+
+sudo apt-get update
+
+
+# Download, Install & Configure Utility Softwares
+
+sudo apt-get install git curl unzip tree wget -y
+
+
+# Install Docker on Ubuntu Server
+
+sudo apt-get install docker.io -y
+
+
+# Install Docker compose on Ubuntu Server
+
+sudo apt-get install docker-compose -y
+
+
+# Enable Docker For Ubuntu User
+
+sudo usermod -aG docker ubuntu
+
+
+# its for osboxes
+
+#sudo usermod -aG docker osboxes
+
+
+# Grant Access
+
+sudo chmod 766 /var/run/docker.sock
+
+
+# Enable Docker Services at boot level
+
+sudo systemctl enable docker
+
+
+# Restart Docker Daemon
+
+sudo systemctl restart docker
+
+
+docker --version
+
+docker-compose --version
+
+touch Dockerfile
+
+touch docker-compose
+
+touch requirements.txt
+
+vi Dockerfile
+
+press i --- go to insert mode
+
+FROM python:3
+
+# Create ENV variable as per Application dependencies 
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Create a Folder if does not exists
+WORKDIR /code
+
+# Copy requirements.txt file to code folder
+COPY requirements.txt /code/
+
+# Install Python Modules i.e. 
+RUN pip install -r requirements.txt
+
+# Copy the Python Sample code to /code folder
+COPY . /code/
+
+press esc
+
+:wq --to save and quit
+
+vi docker-compose
+
+press i
+
+version: '3.3'
+services:
+  db:
+    image: postgres #search in browser in docker hub postgre then give that name 
+    volumes:
+      - ./data/db:/var/lib/postgresql/data  #machine source path
+    environment:
+      - POSTGRES_DB=cloudbinary
+      - POSTGRES_USER=mydbadmin
+      - POSTGRES_PASSWORD=Redhat123
+  web:
+    build: .  
+    command: python manage.py runserver 0.0.0.0:80
+    volumes:
+      - .:/code
+    ports:
+      - "80:80"
+    environment:
+      - POSTGRES_DB=cloudbinary
+      - POSTGRES_USER=mydbadmin
+      - POSTGRES_PASSWORD=Redhat123
+    depends_on:
+      - db
+
+press esc
+
+:wq
+
+vi requirement.txt
+
+press i
+
+Django>=3.0,<4.0
+psycopg2>=2.8
+
+press esc
+
+:wq
+
+ls -lrt
+
+cat Dockerfile
+
+cat docker-compose
+
+cat requirement.txt				   project name
+							  |
+sudo docker-compose run web django-admin startproject cloudbinary .
+			 |
+		   this will be excuted in docker-compose file in web to get the perticular service
+
+
+docker images
+
+ls -lrt
+
+cat docker-compose
+
+docker ps
+
+docker ps -a
+
+l -lrt cloudbinary/
+
+pwd
+
+ls -lrt
+
+echo $USER
+
+sudo chown -R $USER:$USER *
+
+ls -lrt
+
+
+docker-compose images
+
+docker-compose ps
+
+docker-compose ps -a
+
+ls -lrt cloudbinary/
+
+vi cloudbinary/settings.py
+
+:se
+
+in 12th line --  import path
+
+in 29th line -- ALLOWED_HOSTS=['*'] --web server access anywhere
+
+in 77 to 82 command in it --
+
+DATABASE = {
+       'default':{
+          'ENGINE': 'django.db.backends.postgresql',
+	  'NAME' : os.environ.get('POSTGRES_NAME'),
+	  'USER' : os.environ.get('POSTGRES_NAME'),
+	  'PASSWORD':os.environ.get('POSTGRES_PASSWORD'),  
+	   'HOST' : 'db',
+	   'PORT' : 5432,
+	}
+}
+
+press esc
+
+:wq
+
+sudo docker-compose up
+
+
+
+
+
+
+
+
+

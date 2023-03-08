@@ -1,0 +1,380 @@
+azureadmin
+Azure@123456
+
+
+Jenkins : Download, Install & Configure :
+
+OS : Linux 
+
+Distribution : Ubuntu
+
+Version : 22.04
+
+Arch : 64Bit
+
+
+
+Baked OS : https://osboxes.org 
+
+
+
+VirtualBox : 
+
+
+
+STEP-1 : Re-Name 
+
+
+
+Hostname : 
+
+
+
+$ hostname
+
+
+
+$ hostname -I OR ifconfig
+
+
+
+$ hostnamectl set-hostname "jenkins.devops.com" # FQDN 
+
+
+
+Configure hostname :
+
+/etc/hosts
+
+Ipaddress new_hostnanme
+
+
+
+STEP-2 : Download, Install & Configure utility Softwares 
+
+
+
+curl 
+
+wget
+
+unzip 
+
+git
+
+tree 
+
+
+
+# apt update OR apt-get update
+
+
+
+# apt install curl -y OR apt-get install curl -y 
+
+
+
+STEP-3 : Go to Vendor website CI - Jenkins
+
+
+
+https://www.jenkins.io/
+
+
+
+Docs:
+
+https://www.jenkins.io/doc/
+
+
+
+Download:
+
+https://www.jenkins.io/download/
+
+
+#!/bin/bash
+
+
+# Setup Hostname
+
+sudo hostnamectl set-hostname "jenkins.cloudbinary.io"
+
+
+# Update the hostname part of Host File
+
+echo "`hostname -I | awk '{ print $1 }'` `hostname`" >> /etc/hosts
+
+
+# Update Ubuntu Repository
+
+apt update
+
+
+# Download, & Install Utility Softwares
+
+apt install git wget unzip curl tree -y
+
+
+# Download, Install Java 11
+
+sudo apt install openjdk-11-jdk -y
+
+
+# Backup the Environment File
+
+sudo cp -pvr /etc/environment "/etc/environment_$(date +%F_%R)"
+
+
+# Create Environment Variables
+
+echo "JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/" >> /etc/environment
+
+
+# Compile the Configuration
+
+source /etc/environment
+
+
+# Download, Install Maven
+
+sudo apt-get install maven -y
+
+
+# Backup the Environment File
+
+sudo cp -pvr /etc/environment "/etc/environment_$(date +%F_%R)"
+
+
+# Create Environment Variables
+
+echo "MAVEN_HOME=/usr/share/maven" >> /etc/environment
+
+
+# Compile the Configuration
+
+source /etc/environment
+
+
+# Go to /opt directory to download Apache Tomcat
+
+cd /opt/
+
+
+# Add Jenkins Repository
+
+sudo wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+
+
+# Adding the Jenkins Remote Repository URL in Ubuntu Local Repository Configuration file
+
+sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/' > /etc/apt/sources.list.d/jenkins.list
+
+
+# Update the Repository on Ubuntu 18.04
+
+sudo apt update
+
+
+# Download, Install Jenkins
+
+sudo apt install jenkins -y
+
+
+# Verify the jenkins service
+
+sudo systemctl status jenkins.service
+
+
+# Enable Jenkins Daemon/Service at Boot
+
+sudo systemctl enable jenkins.service
+
+
+# Restart the Jenkins Daemon/Service
+
+sudo systemctl restart jenkins.service
+
+
+# Usig Process Status Command
+
+ps -aux | grep jenkins
+
+
+#take public ip address in cloud platform with :8080 port search in broswer
+
+example: 192.1.2.56:8080
+
+#after broswe it one page occur unlock jenkins.in that page we have one path.
+
+cat -take path paste here in terminal we see password take it and paste in unlock jenkins page
+
+
+#after cutomize jenkins shown in that select installed jenkins plugins and press enter
+
+
+#create first admin user 
+
+In this we give information then press save and continue
+
+#after jenkins website occur
+
+go the manage jenkins
+        |
+go to globaltool configuration
+        |
+name:java
+        |
+    java_home:echo java_home in ubuntu or linux server then copy that path and paste here
+	|
+      maven
+     maven_home:echo maven_home in ubuntu or linux server then copy that path and paste here
+	|
+then click apply and save buttons
+
+#again go to the manage jenkins
+	|
+  manage plugins
+	|
+  available plugins
+	|
+  search maven
+	|
+  maven integration
+	|
+ scroll down click install without restart
+	
+#go to the jenkins server teminal
+
+mkdir java-projects
+
+cd java-projects
+
+git clone https://github.com/kesavkummari/webapp-java-maven.git
+
+ls -lrt
+
+#go to the github
+
+create one new repository with the name webapp-java-maven221
+
+#after create repository
+
+click code copy link
+
+#go to the jenkins server teminal
+
+git clone paste here code copy here
+
+ls -lrt
+
+cd webapp-java-maven
+
+cp -pvr /webapp-java-maven/src /webapp-java-maven221/
+
+
+cp -pvr /webapp-java-maven/pom.xml /webapp-java-maven221/
+
+cd webapp-java-maven221
+
+pwd
+
+ls -lrt
+
+git status
+
+git add .
+
+git commit -m "java code"
+
+git status
+
+git push origin main
+
+
+#go back to jenkins server
+	|
+   new item
+	|
+   give project or which name you want
+	|
+    maven project
+	|
+     click ok
+
+#after create the new item then open it
+	|
+   configure
+	|
+In description:java-maven-built-tool:goal-clean
+	|
+in source code management
+ url repository:paste code url.In which project code will be there
+	|
+branches to build:
+  branches sepecifiers:the project created in which branch.give that branch here
+	|
+ build enviorments
+ click delete workspace before the build start
+	|
+goals and options:
+     clean
+	|
+click apply and save
+
+#go back to jenkins server
+	|
+  dashbord
+	|
+      buid now
+	|
+ then the clean job is compile
+
+like clean job you excute validate,compile,test,package,verify,install
+
+
+# Github Java Source Code :
+
+# https://github.com/kesavkummari/webapp-java-maven.git
+
+
+
+Build Lifecycle Basics
+
+Maven is based around the central concept of a build lifecycle. What this means is that the process for building and distributing a particular artifact (project) is clearly defined.
+
+
+
+For the person building a project, this means that it is only necessary to learn a small set of commands to build any Maven project, and the POM will ensure they get the results they desired.
+
+
+
+There are three built-in build lifecycles: default, clean and site. The default lifecycle handles your project deployment, the clean lifecycle handles project cleaning, while the site lifecycle handles the creation of your project's web site.
+
+
+
+A Build Lifecycle is Made Up of Phases
+
+Each of these build lifecycles is defined by a different list of build phases, wherein a build phase represents a stage in the lifecycle.
+
+
+
+For example, the default lifecycle comprises of the following phases (for a complete list of the lifecycle phases, refer to the Lifecycle Reference):
+
+
+
+validate - validate the project is correct and all necessary information is available
+
+compile - compile the source code of the project
+
+test - test the compiled source code using a suitable unit testing framework. These tests should not require the code be packaged or deployed
+
+package - take the compiled code and package it in its distributable format, such as a JAR.
+
+verify - run any checks on results of integration tests to ensure quality criteria are met
+
+install - install the package into the local repository, for use as a dependency in other projects locally
+
+deploy - done in the build environment, copies the final package to the remote repository for sharing with other developers and projects.
+
+These lifecycle phases (plus the other lifecycle phases not shown here) are executed sequentially to complete the default lifecycle. Given the lifecycle phases above, this means that when the default lifecycle is used, Maven will first validate the project, then will try to compile the sources, run those against the tests, package the binaries (e.g. jar), run integration tests against that package, verify the integration tests, install the verified package to the local repository, then deploy the installed package to a remote repository.

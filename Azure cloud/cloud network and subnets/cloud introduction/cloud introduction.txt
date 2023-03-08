@@ -1,0 +1,132 @@
+What is Cloud ?
+
+
+
+The definition for the cloud can seem murky, but essentially, it is a term used to describe a global network of servers, each with a unique function. The cloud is not a physical entity, but instead is a vast network of remote servers around the globe which are hooked together and meant to operate as a single ecosystem. These servers are designed to either store and manage data, run applications or deliver content or a service such as streaming videos, web mail, office productivity software or social media. Instead of accessing files and data from a local or personal computer, you are accessing them online from any Internet-capable device—the information will be available anywhere you go and anytime you need it.
+
+
+
+Businesses use four different methods to deploy cloud resources. There is a public cloud which shares resources and offers services to the public over the Internet, a private cloud which is not shared and offers services over a private internal network typically hosted on-premises, a hybrid cloud which shares services between public and private clouds depending on their purpose and a community cloud which shares resources only between organisations, such as with government institutions.
+
+
+
+
+
+What is Public Cloud?
+
+
+
+The public cloud is defined as computing services offered by third-party providers over the public Internet, making them available to anyone who wants to use or purchase them. They may be free or sold on-demand, allowing customers to pay only per usage for the CPU cycles, storage or bandwidth they consume.
+
+
+
+Unlike private clouds, public clouds can save companies from the expensive costs of having to purchase, manage and maintain on-premises hardware and application infrastructure - the cloud service provider is held responsible for all management and maintenance of the system. Public clouds can also be deployed faster than on-premises infrastructures and with an almost infinitely scalable platform. Every employee of a company can use the same application from any office or branch using their device of choice as long as they can access the Internet. While security concerns have been raised over public cloud environments, when implemented correctly, the public cloud can be as secure as the most effectively managed private cloud implementation if the provider uses proper security methods, such as intrusion detection and prevention systems (IDPS).
+
+
+
+
+
+
+
+3.1 What is Azure global infrastructure? [60+ Regions]
+
+
+
+Azure global infrastructure is made up of two key components—physical infrastructure and connective network components. The physical component is comprised of 200+ physical datacentres, arranged into regions and linked by one of the largest interconnected networks on the planet.
+
+
+
+With the connectivity of the global Azure network, each of the Azure datacentres provides high availability, low latency, scalability and the latest advancements in cloud infrastructure—all running on the Azure platform.
+
+
+
+Together, these components keep data entirely within the trusted Microsoft network and IP traffic never enters the public internet.
+
+
+
+3.2 What is an Azure datacentre? [200+ Data Centers]
+
+
+
+Azure datacentres are unique physical buildings—located all over the globe—that house a group of networked computer servers.
+
+
+
+3.3 What is an Azure region?
+
+
+
+An Azure region is a set of datacentres, deployed within a latency-defined perimeter and connected through a dedicated regional low-latency network.
+
+
+
+With more global regions than any other cloud provider, Azure gives customers the flexibility to deploy applications where they need. An Azure region has discrete pricing and service availability.
+
+
+
+3.4 What is an Azure geography?
+
+
+
+An Azure geography is a discrete market, typically containing at least one or more regions, that preserves data residency and compliance boundaries. Geographies allow customers with specific data-residency and compliance needs to keep their data and applications close. Geographies are fault-tolerant to withstand complete region failure through their connection to the dedicated high-capacity networking infrastructure of Azure.
+
+
+
+3.5 What are Azure Availability Zones?
+
+
+
+Azure Availability Zones are unique physical locations within an Azure region and offer high availability to protect your applications and data from datacentre failures. Each zone is made up of one or more datacentres equipped with independent power, cooling and networking.
+
+
+
+The physical separation of availability zones within a region protects apps and data from facility-level issues. Zone-redundant services replicate your apps and data across Azure Availability Zones to protect from single points of failure.
+
+
+
+3.6 What is the Azure global network?
+
+
+
+The Azure global network refers to all of the components in networking and is comprised of the Microsoft global wide-area network (WAN), points of presence (PoPs), fiber and others.
+
+
+
+
+
+For More Details:
+
+https://azure.microsoft.com/en-in/global-infrastructure/
+
+
+
+What is Private Cloud?
+
+The private cloud is defined as computing services offered either over the Internet or a private internal network and only to select users instead of the general public. Also called an internal or corporate cloud, private cloud computing gives businesses many of the benefits of a public cloud - including self-service, scalability and elasticity - with the additional control and customisation available from dedicated resources over a computing infrastructure hosted on-premises. In addition, private clouds deliver a higher level of security and privacy through both company firewalls and internal hosting to ensure operations and sensitive data are not accessible to third-party providers. One drawback is that the company’s IT department is held responsible for the cost and accountability of managing the private cloud. So private clouds require the same staffing, management and maintenance expenses as traditional datacenter ownership.
+
+
+
+Two models for cloud services can be delivered in a private cloud. The first is infrastructure as a service (IaaS) which allows a company to use infrastructure resources such as compute, network and storage as a service. The second is platform as a service (PaaS) which lets a company deliver everything from simple cloud-based applications to sophisticated-enabled enterprise applications. Private clouds can also be combined with public clouds to create a hybrid cloud, allowing the business to take advantage of cloud bursting to free up more space and scale computing services to the public cloud when computing demand increases.
+
+
+
+
+
+What is a hybrid cloud?
+
+A hybrid cloud—sometimes called a cloud hybrid—is a computing environment that combines an on-premises datacenter (also called a private cloud) with a public cloud, allowing data and applications to be shared between them. Some people define hybrid cloud to include “multicloud” configurations where an organization uses more than one public cloud in addition to their on-premises datacenter.
+
+
+Cloud computing types are service deployment models that let you choose the level of control over your information and types of services you need to provide. There are three main types of cloud computing services, sometimes called the cloud computing stack because they build on top of one another.
+
+
+
+The first cloud computing type is infrastructure-as-a-service (IaaS), which is used for Internet-based access to storage and computing power. The most basic category of cloud computing types, IaaS lets you rent IT infrastructure - servers and virtual machines, storage, networks, and operating systems - from a cloud provider on a pay-as-you-go basis.
+
+
+
+The second cloud computing type is platform-as-a-service (PaaS) that gives developers the tools to build and host web applications. PaaS is designed to give users access to the components they require to quickly develop and operate web or mobile applications over the Internet, without worrying about setting up or managing the underlying infrastructure of servers, storage, networks, and databases.
+
+
+
+The third cloud computing type is software-as-a-service (SaaS) which is used for web-based applications. SaaS is a method for delivering software applications over the Internet where cloud providers host and manage the software applications making it easier to have the same application on all of your devices at once by accessing it in the cloud.

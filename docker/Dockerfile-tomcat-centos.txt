@@ -1,0 +1,28 @@
+FROM centos:latest
+
+RUN yum update -y 
+RUN yum remove java -y 
+RUN yum install -y \
+       java-1.8.0-openjdk \
+       java-1.8.0-openjdk-devel
+
+RUN yum install -y maven
+RUN yum install -y curl 
+RUN yum install -y unzip
+
+RUN java -version
+RUN mvn --version 
+
+RUN mkdir /opt/tomcat/
+
+WORKDIR /opt/tomcat
+RUN curl -O https://downloads.apache.org/tomcat/tomcat-8/v8.5.84/bin/apache-tomcat-8.5.84.tar.gz
+RUN tar xvfz apache*.tar.gz 
+RUN mv apache-tomcat-8.5.84/* /opt/tomcat/.
+
+WORKDIR /opt/tomcat/webapps
+RUN curl -O -L https://github.com/kesavkummari/devops/blob/master/target/devops-1.0.0-SNAPSHOT.war
+
+EXPOSE 8080
+
+CMD ["/opt/tomcat/bin/catalina.sh", "run"]

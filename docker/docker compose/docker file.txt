@@ -1,0 +1,17 @@
+FROM python:3
+
+# Create ENV variable as per Application dependencies 
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Create a Folder if does not exists
+WORKDIR /code
+
+# Copy requirements.txt file to code folder
+COPY requirements.txt /code/
+
+# Install Python Modules i.e. 
+RUN pip install -r requirements.txt
+
+# Copy the Python Sample code to /code folder
+COPY . /code/

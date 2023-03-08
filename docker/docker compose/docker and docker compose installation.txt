@@ -1,0 +1,72 @@
+#!/bin/bash
+
+
+# Setup Hostname
+
+hostnamectl set-hostname "docker.cloudbinary.io"
+
+
+# Configure Hostname unto hosts file
+
+echo "`hostname -I | awk '{ print $1}'` `hostname`" >> /etc/hosts
+
+
+# Update Ubuntu Operating System Repository
+
+sudo apt-get update
+
+
+# Download, Install & Configure Utility Softwares
+
+sudo apt-get install git curl unzip tree wget -y
+
+
+# Install Docker on Ubuntu Server
+
+sudo apt-get install docker.io -y
+
+# Install Docker compose on Ubuntu Server
+
+sudo apt-get install docker-compose -y
+
+# Enable Docker For Ubuntu User
+
+sudo usermod -aG docker ubuntu
+
+# its for osboxes
+
+sudo usermod -aG docker osboxes
+
+
+# Grant Access
+
+sudo chmod 766 /var/run/docker.sock
+
+
+# Enable Docker Services at boot level
+
+sudo systemctl enable docker
+
+
+# Restart Docker Daemon
+
+sudo systemctl restart docker
+
+sudo systemctl status docker
+
+docker rmi (docker image id)--to delete the docker
+                  |
+             to see it docker ps--to see the running docker image
+		  |
+	       docker ps-a to see the stop docker image
+
+docker build . -this command is used for create image
+
+
+
+
+
+
+
+
+

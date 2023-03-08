@@ -1,0 +1,76 @@
+Operating Systems :
+
+- Windows (Host Machine):
+
+# Softwares :
+
+IDE Tool / Text Editor : VSCode : IDE Tool / Text Editor : https://code.visualstudio.com/
+
+# Operating Systems Types :
+
+- DOS : CLI
+
+- Windows : GUI + CLI
+
+- Linux : GUI + CLI
+
+# Different Types of Linux Distributions :
+Linux Distributions : (Linux : Kernel is (CLI) but, Distributions are in (GUI + CLI))
+
+1. Amazon Linux
+
+2. CentOS
+
+3. Red Hat
+
+4. Fedora
+
+5. Gentoo
+
+6. openSUSE
+
+7. Other Linux
+
+8. SUSE Linux
+
+9. Debian
+
+10. Ubuntu
+
+
+Baked Operating Systems : https://www.osboxes.org/
+Virtual-box :
+
+- https://www.osboxes.org/virtualbox-images/
+Ubuntu : https://www.osboxes.org/ubuntu/
+# Ubuntu 22.04 Jammy Jellyfish
+
+# VDI : 2.59GB
+
+https://sourceforge.net/projects/osboxes/files/v/vb/55-U-u/22.04/64bit.7z/download
+
+VirtualBox (VDI) 64bit Size: 2.59GB
+
+SHA256: 7c7641bdb3f3dfa1beaa76b4edd7d3a2a95a4aa27c88b21cb569e8b40cd8e925
+
+
+# Type Of OS : Linux : GUI + CLI
+
+# Username: osboxes
+
+# Password: osboxes.org
+
+
+# Configure VirtualBox with Ubuntu 22.04 ISO File :
+
+STEP-1 : Open Virtual-box
+
+STEP-2 : Click New
+
+STEP-3 : Configure & Map VDI
+
+STEP-4 : Start VirtualMachine
+
+STEP-5 : Login
+
+STEP-6 : Validate & PowerOff

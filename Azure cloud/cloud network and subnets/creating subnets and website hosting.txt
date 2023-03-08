@@ -1,0 +1,50 @@
+Host A WebSite :
+
+
+STEP-1 : Login to Portal
+
+
+STEP-2 : Create Subscription
+
+
+STEP-3 : Resource Group
+
+- Virtual Network : IPV4(A,B,C : 192.168.0.0/16 | 65,536 )
+
+- Subnets :
+
+1. Subnet-1 : 192.168.1.0/24 [ 251 Servers ] 5 Reserved
+
+
+- Launch Linux/Windows Virtual Machines :
+
+- Virtual Configuration : vCPU : 2 ; RAM : 4
+
+- Attach DISK : 8 GB | 30 GB
+
+- NIC --> Mapped Public IP
+
+- NSG --> Inbound 22 | 3389 | 80
+
+
+- Install WebServer Software
+
+- Go to DocumentRoot : index.html [Deploy a Code From VCS/SCM i.e. GitHub ]
+
+https://ubuntu.com/tutorials/install-and-configure-apache#1-overview
+
+apt-get update
+
+
+apt-get install apache2 -y
+
+
+systemctl restart apache2
+
+
+echo "Welcome To AZURE DevOps" > /var/www/html/index.html
+
+
+
+
+2. Subnet-2 : 192.168.2.0/24 [ 251 Servers ] 5 Reserved

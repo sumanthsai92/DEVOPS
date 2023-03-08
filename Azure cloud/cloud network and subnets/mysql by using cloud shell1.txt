@@ -1,0 +1,52 @@
+
+# Create an Azure Database for MySQL server
+
+az group create --name azdevopsRG --location eastus
+
+
+# Create an Azure Database for MySQL server with the az mysql server create command. A server can contain multiple databases.
+
+az mysql server create --resource-group azdevopsRG --name cloudbinary --location eastus --admin-user myadmin --admin-password Azure@123456 --sku-name GP_Gen5_2
+
+
+# Configure a server-level firewall rule
+
+az mysql server firewall-rule create --resource-group azdevopsRG --server cloudbinary --name AllowMyIP --start-ip-address 49.37.135.105 --end-ip-address 49.37.135.105
+
+
+# Example : az mysql server firewall-rule create --resource-group azdevopsRG --server cloudbinary --name AllowMyIP --start-ip-address 183.83.38.87 --end-ip-address 183.83.38.88
+
+
+# Check Your Host Machine Ipaddress
+
+https://whatismyipaddress.com/
+
+
+# Get the connection information
+
+# To connect to your server, you need to provide host information and access credentials.
+
+az mysql server show --resource-group azdevopsRG --name cloudbinary
+
+
+# Note: The result is in JSON format. Make a note of the fullyQualifiedDomainName and administratorLogin.
+
+
+# Connect to Azure Database for MySQL server using mysql command-line client
+
+# You can connect to your server using a popular client tool, mysql.exe command-line tool with Azure Cloud Shell.
+
+# Alternatively, you can use mysql command line on your local environment.
+
+
+mysql -h cloudbinary.mysql.database.azure.com -u myadmin@cloudbinary -p
+
+
+# Clean up resources
+
+az group delete --name azdevopsRG
+
+
+# If you would just like to delete the one newly created server, you can run az mysql server delete command.
+
+az mysql server delete --resource-group azdevopsRG --name cloudbinary

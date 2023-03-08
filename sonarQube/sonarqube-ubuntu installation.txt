@@ -1,0 +1,149 @@
+#!/bin/bash
+
+
+# Setup Hostname
+
+sudo hostnamectl set-hostname "sonar.cloudbinary.io"
+
+
+# Update the hostname part of Host File
+
+echo "`hostname -I | awk '{ print $1 }'` `hostname`" >> /etc/hosts
+
+
+# Update Ubuntu Repository
+
+sudo apt update
+
+
+# Download, & Install Utility Softwares
+
+sudo apt install git wget unzip curl tree -y
+
+
+# Download, Install Java 11
+
+sudo apt install openjdk-11-jdk -y
+
+
+# Backup the Environment File
+
+sudo cp -pvr /etc/environment "/etc/environment_$(date +%F_%R)"
+
+
+# Create Environment Variables
+
+echo "JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/" >> /etc/environment
+
+
+# Compile the Configuration
+
+source /etc/environment
+
+
+# Create a Dedicated user for Sonarqube
+
+sudo adduser --system --no-create-home --group --disabled-login sonarh2s
+
+
+# RDBMS - Install PostgreSQL Database
+
+wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O- | sudo apt-key add -
+
+
+# Add repo:
+
+echo "deb [arch=amd64] http://apt.postgresql.org/pub/repos/apt/ focal-pgdg main" | sudo tee /etc/apt/sources.list.d/postgresql.list
+
+
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
+
+
+# Install PostgreSQL 13
+
+
+sudo apt install postgresql-13
+
+
+# You can check the status of its service using
+
+
+sudo systemctl status postgresql
+
+
+# Assign a Password to postgres user
+
+passwd postgres
+
+
+# Switch as postgres user
+
+su - postgres
+
+
+# Check Schemas :
+
+select schema_name from information_schema.schemata;
+
+
+exit;
+
+
+# Now, create a new user that will access the database for Sonarqube.
+
+createuser sonaruser
+
+
+# Switch to the PostgreSQL shell.
+
+psql
+
+
+# To secure a newly created user, set a password for the same using the below syntax:
+
+
+ALTER USER sonaruser WITH ENCRYPTED password 'Azure@123456';
+
+
+Note: change the bold items with whatever you want to use.
+
+
+# Create a new database on PostgreSQL by running:
+
+
+CREATE DATABASE sonardb OWNER sonaruser;
+
+
+# To exit from database
+
+postgres=# \q
+
+
+# OR
+
+
+postgres=# exit;
+
+
+# To come out from postgres user from linux server
+
+postgres@sonar:~$ exit
+
+logout
+
+
+# Download and Setup SonarQube
+
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.0.1.46107.zip
+
+
+unzip sonarqube-9.0.1.46107.zip
+
+
+mv sonarqube-9.0.1.46107 sonarqube
+
+
+# Set user permission: We have created a dedicated user for SonarQube, hence, give the extracted permission to that user.
+
+
+sudo chown -R sonarh2s:sonarh2s /opt/sonarqube

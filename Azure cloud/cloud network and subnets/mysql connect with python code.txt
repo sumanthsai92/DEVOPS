@@ -1,0 +1,96 @@
+# Example-1
+
+import mysql.connector
+
+
+mydb = mysql.connector.connect(
+
+host="cloudbinary-dev.mysql.database.azure.com",
+
+user="auzreadmin@cloudbinary-dev",
+
+password="Azure@123456"
+
+)
+
+
+print(mydb)
+
+
+
+# Example-2
+import mysql.connector
+
+
+mydb = mysql.connector.connect(
+
+host="cloudbinary.mysql.database.azure.com",
+
+user="myadmin@cloudbinary",
+
+password="Azure@123456"
+
+)
+
+
+print(mydb)
+
+
+mycursor = mydb.cursor()
+
+
+mycursor.execute("SELECT * FROM courses.students;")
+
+
+myresult = mycursor.fetchall()
+
+
+for x in myresult:
+
+print(x)
+
+
+
+
+
+# Create resource group
+
+New-AzResourceGroup -Name 'myResourceGroup' -Location 'EastUS'
+
+
+# Create virtual machine
+
+New-AzVm `
+
+-ResourceGroupName 'myResourceGroup' `
+
+-Name 'myVM' `
+
+-Location 'East US' `
+
+-VirtualNetworkName 'myVnet' `
+
+-SubnetName 'mySubnet' `
+
+-SecurityGroupName 'myNetworkSecurityGroup' `
+
+-PublicIpAddressName 'myPublicIpAddress' `
+
+-OpenPorts 80,3389
+
+
+# Install web server
+
+Invoke-AzVMRunCommand -ResourceGroupName 'myResourceGroup' -VMName 'myVM' -CommandId 'RunPowerShellScript' -ScriptString
+
+'Install-WindowsFeature -Name Web-Server -IncludeManagementTools'
+
+
+# Go to Browser and Provide VM IPaddress
+
+http://5.10.7.10
+
+
+# Clean up resources
+
+Remove-AzResourceGroup -Name 'myResourceGroup'

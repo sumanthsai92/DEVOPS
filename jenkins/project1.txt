@@ -1,0 +1,14 @@
+real time project1:by using jenkins CI-CD pipeline
+
+creat one vm with 4cpu and 16gb ram 
+
+connect the vm in vscode
+
+cd downloads ---- the pem is downloaded here that why i change path to downloads
+
+chmod 400 <keyname>.pem
+
+ssh -i <private key path> azureuser@20.85.238.42
+
+
+

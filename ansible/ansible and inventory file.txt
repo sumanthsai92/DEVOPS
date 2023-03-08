@@ -1,0 +1,99 @@
+configuration management tool:
+
+ansible -push mechanism
+
+puppet -pull mechanism
+
+chef -pull mechanism
+
+saltstack -push mechanism
+
+push mechanism - push mechanism means when updates will there than only we contact the client then the workload is low or lite.
+
+
+pull mechanism - pull mechanism means clients will contact when they want update then the workload is high.
+
+------------------------------------------------------------------------
+10.0.0.4 name of the host machine - premanent change of server name
+
+sudo vi /etc/hosts
+
+add 10.0.0.4 name of the host machine
+
+cat /etc/host
+
+----------------------------------------------------------------------
+
+ansible inventory : /etc/ansible/hosts
+
+[web app]:
+10.0.1.40
+
+[app]:
+10.0.2.48
+
+[db]:
+10.0.3.41
+
+In ansible inventory we provide private ip of the server
+
+
+--------------------------------------------------------------------------
+
+ansible inventory : 
+
+sudo cp -pvr /etc/ansible/hosts_20221130
+
+ls -lrt /etc/ansible/hosts*
+
+vi /etc/ansible/hosts
+
+[web app]:
+
+[app]:
+
+[db]:
+
+inventory file will be in ansible server
+
+----------------------------------------------------------------------------
+#install of ansible server
+
+
+#!/bin/bash
+
+
+
+# Setup New Hostname
+
+hostnamectl set-hostname "ansible-controller.kesavkummari.com"
+
+
+
+hostnamectl set-hostname "web.rrtech.com"
+
+
+
+# Configure New Hostname as part of /etc/hosts file 
+
+echo "`hostname -I | awk '{ print $1}'` `hostname`" >> /etc/hosts
+
+
+
+# Update the Repository
+
+sudo apt update
+
+
+
+# Download, Install & Configure Ansible
+
+sudo apt install software-properties-common -y 
+
+
+
+sudo add-apt-repository --yes --update ppa:ansible/ansible
+
+
+
+sudo apt install ansible -y 

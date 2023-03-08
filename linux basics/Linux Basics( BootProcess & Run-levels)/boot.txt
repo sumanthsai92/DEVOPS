@@ -1,0 +1,129 @@
+Agenda :
+
+
+
+Boot Process :
+
+BIOS
+
+MBR
+
+GRUB
+
+KERNEL
+
+INIT/SYSTEMD
+
+RUNLEVELS/TARGETS
+
+
+There are six high-level stages for Linux boot process:
+
+
+BIOS – Basic Input/Output System executes MBR
+
+MBR – Master Boot Record execute GRUB
+
+GRUB – Grand Unified Bootloader executes Kernel
+
+Kernel – Kernel executes /sbin/init
+
+Init – Init executes runlevel programs
+
+Runlevel – Runlevel programs are executed from /etc/rc.d/rc*.d/
+
+
+Runlevels :
+
+There are seven(7) run levels available with the Linux operating system:
+
+
+0 – halt
+
+1 – single-user mode
+
+2 – Multiuser, without NFS
+
+3 – Full multiuser mode
+
+4 – unused
+
+5 – X11
+
+6 – reboot
+
+
+
+Check the Runlevel In Linux (Systemd)
+
+In recent versions of Linux systems (starting from RHEL 7, Ubuntu 16.04 LTS), the concept of runlevels has been replaced with systemd targets.
+
+
+Here is the list of Systemd targets in Linux distributions,which were distributed with Systemd as default service manager.
+
+
+runlevel0.target, poweroff.target - Halt
+
+runlevel1.target, rescue.target - Single-user text mode
+
+runlevel2.target, multi-user.target - Not used (user-definable)
+
+runlevel3.target, multi-user.target - Full multi-user text mode
+
+runlevel4.target, multi-user.target - Not used (user-definable)
+
+runlevel5.target, graphical.target - Full multi-user graphical mode (with an X-based login screen)
+
+runlevel6.target, reboot.target - Reboot
+
+
+In Linux systems that are using Systemd as default service manager, you can find the current target using command:
+
+
+$ systemctl get-default
+
+
+To view all currently loaded targets, run:
+
+
+$ systemctl list-units --type target
+
+
+If you'd like to change the RunLevel to something else, for example runlevel3.target, set it as shown below:
+
+
+$ sudo systemctl set-default runlevel3.target
+
+
+Check Linux Runlevel Using 'who' command
+
+As one of the reader suggested in the comment section below, we can also find the runlevel using who command like below:
+
+
+$ who -r
+
+
+To find out the system runlevel, open your Terminal and run the following command:
+
+
+$ runlevel
+
+
+$ systemctl get-default
+
+$ systemctl set-default "multi-user.target"
+
+
+If you'd like to change the RunLevel to something else, edit /etc/inittab file:
+
+
+$ sudo vi /etc/inittab
+
+
+For more details about runlevels, refer man pages.
+
+
+$ man runlevel
+
+
+Q?

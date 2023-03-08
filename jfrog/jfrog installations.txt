@@ -1,0 +1,88 @@
+#!/bin/bash
+
+
+# Setup Hostname
+
+hostnamectl set-hostname "jfrog.cloudbinary.io"
+
+
+# Configure Hostname unto hosts file
+
+echo "`hostname -I | awk '{ print $1}'` `hostname`" >> /etc/hosts
+
+
+# Update the Repository on Ubuntu 18.04
+
+sudo apt-get update
+
+
+# Install required utility softwares
+
+sudo apt-get install vim curl elinks unzip wget tree git -y
+
+
+# Download, Install Java 11
+
+sudo apt-get install openjdk-11-jdk -y
+
+
+# Backup the Environment File
+
+sudo cp -pvr /etc/environment "/etc/environment_$(date +%F_%R)"
+
+
+# Create Environment Variables
+
+echo "JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/" >> /etc/environment
+
+
+# Compile the Configuration
+
+source /etc/environment
+
+
+# Common Software Properties
+
+sudo apt install software-properties-common -y
+
+
+# add the repository key and file to Ubuntu.
+wget -qO - https://api.bintray.com/orgs/jfrog/keys/gpg/public.key | apt-key add -
+
+
+
+# Add Jfrog URL
+
+sudo add-apt-repository "deb [arch=amd64] https://jfrog.bintray.com/artifactory-debs $(lsb_release -cs) main"
+
+
+# Update the Repository on Ubuntu 18.04
+
+sudo apt-get update
+
+
+# Install Jfrog
+
+sudo apt install jfrog-artifactory-oss -y
+
+
+# Start Jfrog Service
+
+# sudo systemctl status artifactory.service
+
+# sudo systemctl stop artifactory.service
+
+# sudo systemctl start artifactory.service
+
+# sudo systemctl restart artifactory.service
+
+# sudo systemctl enable artifactory.service
+
+
+# Open Browser and Validate
+
+
+# http://65.0.124.225:8081
+
+
+# UserName : admin ; Password : password

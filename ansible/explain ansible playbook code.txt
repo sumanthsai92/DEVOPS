@@ -1,0 +1,46 @@
+--- # Opening Syntax
+- name: Play-1 [ Install a Web Server i.e. Apache2 ]
+  hosts: web
+  become: true 
+  tasks:
+    - name: Update Package Manager
+      apt: update_cache=yes
+      ignore_errors: yes 
+
+    - name: Install Web Server i.e. apche2 
+      apt: name=apache2 state=present 
+
+    - name: Install Web Server i.e. apche2 
+      service: name=apache2 state=restarted  
+
+- name: Play-2 [ Install a DB i.e. MYSQL ]
+  hosts: db   --- inventory file which you give ip address give here that name like wed,db etc
+  become: yes --- go to the root user
+  tasks:
+    - name: Update Package Manager
+      apt: update_cache=yes --it update the apt command
+      ignore_errors: yes --if error come ignore by this code
+
+    - name: MySQL DB Install 
+      apt: name=mysql-server state=present 
+
+    - name: Enable & Start MySQL Server 
+      service: name=mysql.service state=restarted 
+
+... # Closing Syntax 
+
+--------------------------------------------------------------------------
+
+HTML
+# Creating User In Linux 
+--- 
+- name: Play-1  [User Creation in Linux] 
+  hosts: web
+  become: yes
+  tasks:
+  - name: Add the User 'kesav'
+    ansible.builtin.user:
+      name: kesav
+...
+
+# ansible web -m ansible.builtin.user -a "name=spider password=redhat@123" ----this command for header commands by understand it playbook easily understand
